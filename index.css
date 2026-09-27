@@ -6,7 +6,7 @@
 }
 
 .header {
- 
+  background-color: #ffffff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
@@ -30,8 +30,6 @@
 .nav {
   display: flex;
   gap: 30px;
-  padding-right: 140px;
- 
 }
 
 .nav-link {
@@ -67,16 +65,13 @@
 
 
 /* Блок-обгортка для зображення та тексту */
-/* Блок-банер, прикріплений до самого низу екрана */
 .promo-banner {
-  position: fixed;        /* Фіксує блок відносно вікна браузера */
-  bottom: 0;              /* Притискає до самого низу */
-  left: 0;
-  width: 100%;            /* Розтягує на всю ширину */
-  height: 300px;          /* Висота рекламного блоку знизу */
-  z-index: 1000;  
-  border-radius: 7px;        /* Розміщує поверх інших елементів */
-  
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  margin-top: 50px;
+  border-radius: 7px;
+
   /* Фонове зображення із затемненням */
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                     url('https://plus.unsplash.com/premium_photo-1764687862296-d7b186a812f9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
@@ -123,14 +118,11 @@
   content: "✓";            /* Символ крапки */
   position: absolute;
   left: 0;                 /* Відступ від лівого краю */
-  color: #ffee00;          /* Колір крапки */
+  color: #1a73e8;          /* Колір крапки — акцентний синій, добре видно на білому фоні */
   font-size: 20px;         /* Розмір крапки */
-         /* Вирівнювання по вертикалі */
-
 }
 
 .golovna {
-  margin-top: 20px;
   margin: 10px auto;
 }
 .h1 {
@@ -142,24 +134,29 @@
 .text {
   font-size: 18px;
   line-height: 1.6;
-  margin-bottom: 20px;
   text-align: left;
   font-family: 'Comfortaa', sans-serif;
-  max-width: 900px;       
-  margin: 60px auto;     
+  max-width: 900px;
+  margin: 60px auto;
   padding: 0 20px;
 }
-.Hotel{
-float: right;
-  gap: 20px;
+.Hotel {
+  float: right;
+  margin-left: 20px;
   margin-top: 40px;
+  margin-bottom: 20px;
   width: 200px;
-height: 200px;
-}/* --- СТОРОННІ СТИЛІ СТОРІНКИ КОНТАКТИ --- */
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: #e9e9e9;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+}
+/* --- Стилі сторінки контактів --- */
 .info {
   margin: 10px;
 }
-.btn{
+.btn {
   background-color: gold;
   color: white;
   border-radius: 15px;
@@ -170,38 +167,50 @@ height: 200px;
   margin-bottom: 10px;
   display: inline-block;
   font-size: 18px;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
 }
 
-.comfortaa-uniquifier {
-  font-family: "Comfortaa", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: weight;
-  font-style: normal;
-}
-.comic-relief-regular {
-  font-family: "Comic Relief", system-ui;
-  font-weight: 400;
-  font-style: normal;
+.btn:hover {
+  opacity: 0.85;
 }
 
-.comic-relief-bold {
-  font-family: "Comic Relief", system-ui;
-  font-weight: 700;
-  font-style: normal;
-}
+/* --- Адаптивність --- */
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 16px;
+  }
 
-.roboto-mono-uniquifier {
-  font-family: "Roboto Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: weight;
-  font-style: normal;
-}
+  .logo img {
+    height: 70px;
+  }
 
-.bricolage-grotesque-uniquifier {
-  font-family: "Bricolage Grotesque", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: weight;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+  .nav {
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .Hotel {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: 220px;
+    margin: 0 auto 20px;
+  }
+
+  .promo-banner {
+    min-height: 200px;
+    padding: 0 20px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .promo-content h2 {
+    font-size: 22px;
+  }
 }

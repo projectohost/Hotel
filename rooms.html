@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Номери | Hotel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./room.css">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container">
+    <a href="#" class="logo">
+      <img src="https://thumbs.dreamstime.com/b/hotel-logo-template-background-58362974.jpg" alt="Логотип готелю">
+    </a>
+
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Головна</a>
+      <a href="rooms.html" class="nav-link active">Номери</a>
+      <a href="contact.html" class="nav-link">Контакти</a>
+      <a href="about.html" class="nav-link">Про нас</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="page">
+
+    <h1>Наші номери</h1>
+
+    <p class="intro">
+        Оберіть номер, який найкраще підходить для вашого відпочинку.
+    </p>
+
+    <div class="rooms">
+
+        <div class="room">
+    <img src="Images/room1.png" alt="Стандартний номер">
+    <h2>Стандарт</h2>
+    <p>Затишний номер для комфортного проживання.</p>
+
+    <div class="price-booking">
+        <p><b>₴1500 / доба</b></p>
+        <button onclick="alert('Ви обрали номер Стандарт')">
+            Забронювати
+        </button>
+    </div>
+</div>
+
+<div class="room">
+    <img src="Images/room2.png" alt="Комфортний номер">
+    <h2>Комфорт</h2>
+    <p>Просторий номер із додатковими зручностями.</p>
+
+    <div class="price-booking">
+        <p><b>₴2200 / доба</b></p>
+        <button onclick="alert('Ви обрали номер Комфорт')">
+            Забронювати
+        </button>
+    </div>
+</div>
+
+<div class="room">
+    <img src="Images/room3.png" alt="Люкс">
+    <h2>Люкс</h2>
+    <p>Великий номер для максимально комфортного відпочинку.</p>
+
+    <div class="price-booking">
+        <p><b>₴3500 / доба</b></p>
+        <button onclick="alert('Ви обрали номер Люкс')">
+            Забронювати
+        </button>
+    </div>
+</div>
+
+    </div>
+
+</main>
+
+</body>
+</html>
