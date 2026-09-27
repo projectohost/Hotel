@@ -49,7 +49,7 @@
 
     <div class="price-booking">
         <p><b>₴1500 / доба</b></p>
-        <button onclick="alert('Ви обрали номер Стандарт')">
+        <button onclick="openBooking('Стандарт', 1500)">
             Забронювати
         </button>
     </div>
@@ -62,7 +62,7 @@
 
     <div class="price-booking">
         <p><b>₴2200 / доба</b></p>
-        <button onclick="alert('Ви обрали номер Комфорт')">
+        <button onclick="openBooking('Комфорт', 2200)">
             Забронювати
         </button>
     </div>
@@ -75,7 +75,7 @@
 
     <div class="price-booking">
         <p><b>₴3500 / доба</b></p>
-        <button onclick="alert('Ви обрали номер Люкс')">
+        <button onclick="openBooking('Люкс', 3500)">
             Забронювати
         </button>
     </div>
@@ -84,6 +84,115 @@
     </div>
 
 </main>
+
+<!-- Модальне вікно бронювання -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <button type="button" class="modal-close" onclick="closeBooking()" aria-label="Закрити">&times;</button>
+
+    <h2>Бронювання номера «<span id="modalRoomName"></span>»</h2>
+
+    <form id="bookingForm">
+      <label>
+        Ім'я
+        <input type="text" id="guestName" placeholder="Ваше ім'я" required>
+      </label>
+
+      <label>
+        Телефон
+        <input type="tel" id="guestPhone" placeholder="+380 XX XXX XX XX" required>
+      </label>
+
+      <label>
+        Кількість днів
+        <input type="number" id="guestDays" min="1" value="1" required>
+      </label>
+
+      <p class="modal-price">Загальна вартість: <b id="modalTotal">₴0</b></p>
+
+      <button type="submit" class="confirm-btn">Підтвердити</button>
+    </form>
+  </div>
+</div>
+
+<!-- Спливаюче повідомлення -->
+<div class="toast" id="toast"></div>
+
+<script>
+  let currentRoom = '';
+  let currentPrice = 0;
+
+  const modal = document.getElementById('bookingModal');
+  const modalRoomName = document.getElementById('modalRoomName');
+  const guestDays = document.getElementById('guestDays');
+  const guestName = document.getElementById('guestName');
+  const guestPhone = document.getElementById('guestPhone');
+  const modalTotal = document.getElementById('modalTotal');
+  const bookingForm = document.getElementById('bookingForm');
+  const toast = document.getElementById('toast');
+
+  function openBooking(room, pricePerDay) {
+    currentRoom = room;
+    currentPrice = pricePerDay;
+
+    modalRoomName.textContent = room;
+    guestName.value = '';
+    guestPhone.value = '';
+    guestDays.value = 1;
+
+    updateTotal();
+    modal.classList.add('active');
+  }
+
+  function closeBooking() {
+    modal.classList.remove('active');
+  }
+
+  function updateTotal() {
+    const days = parseInt(guestDays.value, 10) || 0;
+    const total = days * currentPrice;
+    modalTotal.textContent = '₴' + total.toLocaleString('uk-UA');
+  }
+
+  function dayWord(n) {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return 'день';
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'дні';
+    return 'днів';
+  }
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+
+  guestDays.addEventListener('input', updateTotal);
+
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeBooking();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeBooking();
+  });
+
+  bookingForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = guestName.value.trim();
+    const phone = guestPhone.value.trim();
+    const days = parseInt(guestDays.value, 10) || 0;
+
+    if (!name || !phone || days < 1) return;
+
+    const total = days * currentPrice;
+    closeBooking();
+    showToast(`Дякуємо, ${name}! Бронювання номера «${currentRoom}» на ${days} ${dayWord(days)} (₴${total.toLocaleString('uk-UA')}) підтверджено.`);
+  });
+</script>
 
 </body>
 </html>
